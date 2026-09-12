@@ -353,7 +353,7 @@ def main():
                     )
 
             except Exception as e:
-                st.error("Something went wrong while generating the image. Please try again.")
+                st.error(f"Error generating images: {str(e)}")
 
     # Product Photography Tab
     with tabs[1]:
