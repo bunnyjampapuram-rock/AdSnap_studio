@@ -337,8 +337,7 @@ def main():
                 if generated_urls:
                     st.image(
                         generated_urls[0],
-                        caption="Generated Image",
-                        use_column_width=True
+                        caption="Generated Image"
                     )
 
                     image_buffer = io.BytesIO()
