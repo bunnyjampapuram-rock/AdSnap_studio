@@ -2,6 +2,24 @@
 
 A powerful Streamlit app for generating professional product ads using Bria AI's advanced image generation and manipulation APIs.
 
+## 🚀 Live Demo
+
+Try AdSnap Studio live:
+
+👉 **[Launch AdSnap Studio](https://adsnapstudio-c58mqbcpkxvvtsmdzbatse.streamlit.app/)**
+
+### What you can try
+- ✨ AI Image Generation
+- 🖼️ Product Lifestyle Shots
+- 🎨 Generative Fill
+- 🧹 Erase unwanted elements
+- 📝 AI Prompt Enhancement
+- 📥 Download generated images
+
+> **Note:** An API key may be required to use the image generation features.
+
+
+
 ## 🌟 Features
 
 - 🖼️ Generate HD product images from text prompts
