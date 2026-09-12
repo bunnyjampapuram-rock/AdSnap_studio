@@ -55,10 +55,15 @@ def initialize_session_state():
     if 'enhanced_prompt' not in st.session_state:
         st.session_state.enhanced_prompt = None
 
-def download_image(url):
-    """Download image from URL and return as bytes."""
+def download_image(image_or_url):
+    """Return image data as bytes from a URL or PIL Image."""
     try:
-        response = requests.get(url)
+        if isinstance(image_or_url, Image.Image):
+            buffer = io.BytesIO()
+            image_or_url.save(buffer, format="PNG")
+            return buffer.getvalue()
+
+        response = requests.get(image_or_url, timeout=60)
         response.raise_for_status()
         return response.content
     except Exception as e:
@@ -245,11 +250,6 @@ def main():
                         except Exception as e:
                             st.error(f"Error enhancing prompt: {str(e)}")
                             
-            # Debug information
-            st.write("Debug - Session State:", {
-                "original_prompt": st.session_state.get("original_prompt"),
-                "enhanced_prompt": st.session_state.get("enhanced_prompt")
-            })
         
         with col2:
             num_images = st.slider("Number of images", 1, 4, 1)
@@ -311,7 +311,6 @@ def main():
                             status_container=status_container
                         )
                         image_url = final_result.get("image_url")
-                        st.write("IMAGE URL:", image_url)
                     else:
                         # Support an already-completed response too.
                         result_obj = submit_result.get("result")
@@ -334,10 +333,27 @@ def main():
                 status_container.success(
                     f"✨ {len(generated_urls)} image{'s' if len(generated_urls) != 1 else ''} generated successfully!"
                 )
+                # Display generated image
+                if generated_urls:
+                    st.image(
+                        generated_urls[0],
+                        caption="Generated Image",
+                        use_column_width=True
+                    )
+
+                    image_buffer = io.BytesIO()
+                    generated_urls[0].save(image_buffer, format="PNG")
+
+                    st.download_button(
+                        "⬇️ Download Result",
+                        image_buffer.getvalue(),
+                        "generated_image.png",
+                        "image/png",
+                        key="generate_download"
+                    )
 
             except Exception as e:
-                st.error(f"Error generating images: {str(e)}")
-                st.write("Full error:", str(e))
+                st.error("Something went wrong while generating the image. Please try again.")
 
     # Product Photography Tab
     with tabs[1]:
@@ -867,7 +883,6 @@ def main():
                                                 status_container.warning("⏳ Still generating... Please check again in a moment.")
                         except Exception as e:
                             st.error(f"Error: {str(e)}")
-                            st.write("Full error details:", str(e))
             
             with col2:
                 if st.session_state.edited_image:
