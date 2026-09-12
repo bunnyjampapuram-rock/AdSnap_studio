@@ -351,8 +351,8 @@ def main():
                         key="generate_download"
                     )
 
-            except Exception as e:
-                st.error(f"Error generating images: {str(e)}")
+            except Exception:
+                st.error("Something went wrong while generating the image. Please try again.")
 
     # Product Photography Tab
     with tabs[1]:
