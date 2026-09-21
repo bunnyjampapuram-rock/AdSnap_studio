@@ -730,7 +730,7 @@ def main():
             
             with col2:
                 if st.session_state.edited_image:
-                    st.image(st.session_state.edited_image, caption="Edited Image", use_column_width=True)
+                    st.image(st.session_state.edited_image, caption="Edited Image", width="stretch")
                     image_data = download_image(st.session_state.edited_image)
                     if image_data:
                         st.download_button(
