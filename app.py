@@ -787,7 +787,7 @@ def main():
                     stroke_color=stroke_color,
                     drawing_mode=drawing_mode,
                     background_color="",  # Transparent background
-                    background_image=img if img_array.shape[-1] == 3 else None,  # Only pass RGB images
+                    background_image=None,  # Only pass RGB images
                     height=canvas_height,
                     width=canvas_width,
                     key="canvas",
@@ -936,7 +936,7 @@ def main():
                     stroke_width=stroke_width,
                     stroke_color=stroke_color,
                     background_color="",  # Transparent background
-                    background_image=img,  # Pass PIL Image directly
+                    background_image=None,  # Pass PIL Image directly
                     drawing_mode="freedraw",
                     height=canvas_height,
                     width=canvas_width,
