@@ -363,7 +363,7 @@ def main():
             col1, col2 = st.columns(2)
             
             with col1:
-                st.image(uploaded_file, caption="Original Image", use_column_width=True)
+                st.image(uploaded_file, caption="Original Image", width="stretch")
                 
                 # Product editing options
                 edit_option = st.selectbox("Select Edit Option", [
