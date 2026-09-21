@@ -754,7 +754,7 @@ def main():
             
             with col1:
                 # Display original image
-                st.image(uploaded_file, caption="Original Image", use_column_width=True)
+                st.image(uploaded_file, caption="Original Image", width="stretch")
                 
                 # Get image dimensions for canvas
                 img = Image.open(uploaded_file)
@@ -885,7 +885,7 @@ def main():
             
             with col2:
                 if st.session_state.edited_image:
-                    st.image(st.session_state.edited_image, caption="Generated Result", use_column_width=True)
+                    st.image(st.session_state.edited_image, caption="Generated Result", width="stretch")
                     image_data = download_image(st.session_state.edited_image)
                     if image_data:
                         st.download_button(
@@ -908,7 +908,7 @@ def main():
             
             with col1:
                 # Display original image
-                st.image(uploaded_file, caption="Original Image", use_column_width=True)
+                st.image(uploaded_file, caption="Original Image", width="stretch")
                 
                 # Get image dimensions for canvas
                 img = Image.open(uploaded_file)
